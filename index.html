@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JOSIM -STREAM</title>
+    <!-- daisiUi link  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="m-2 p-2 border-b-1">
+        <ul class="w-11/12 mx-auto flex items-center justify-between">
+          <li><img src="./assets/Logo.png" alt="" /></li>
+          <li><button class="btn text-xl">Sort By View</button></li>
+          <li class="bg-red-500 text-xl btn text-white">Blog</li>
+        </ul>
+      </nav>
+      <div>
+        <ul
+          id="catagory"
+          class="w-11/12 mx-auto flex items-center justify-center gap-5"
+        >
+          <li class="bg-red-500 text-xl btn text-white">All</li>
+          <!-- <li class="btn text-xl">Music</li>
+          <li class="btn text-xl">Comedy</li>
+          <li class="btn text-xl">Drawing</li> -->
+        </ul>
+      </div>
+    </header>
+    <main class="mt-8 w-11/12 mx-auto">
+      <div id="container" class="grid grid-cols-4 gap-5">
+        <!-- <div class="card bg-base-100 w-[320px] shadow-sm">
+          <figure>
+            <img src="./assets/Rectangle 1.png" alt="" />
+          </figure>
+          <div class="card-body">
+            <div class="flex items-center gap-4 justify-between">
+              <img class="w-5" src="./assets/channel-logo.png" alt="" />
+              <h2 class="text-xl">
+                Building a Winning UX Strategy Using the Kano Model
+              </h2>
+            </div>
+            <div class="ml-7">
+              <div class="flex items-center">
+                LWJ -Learn With Josim
+                <img class="w-4 mt-1 ml-1" src="assets/blue-badge.png" alt="" />
+              </div>
+              <div class="">91k views</div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </main>
+    <!-- <script src="./javaScript/script.js"></script> -->
+    <script src="./javaScript/api.js"></script>
+  </body>
+</html>
