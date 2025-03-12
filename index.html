@@ -26,7 +26,12 @@
           id="catagory"
           class="w-11/12 mx-auto flex items-center justify-center gap-5"
         >
-          <li class="bg-red-500 text-xl btn text-white">All</li>
+          <li
+            onclick="loadVideos();"
+            class="text-xl btn hover:bg-red-500 hover:text-white"
+          >
+            All
+          </li>
           <!-- <li class="btn text-xl">Music</li>
           <li class="btn text-xl">Comedy</li>
           <li class="btn text-xl">Drawing</li> -->
@@ -34,24 +39,39 @@
       </div>
     </header>
     <main class="mt-8 w-11/12 mx-auto">
-      <div id="container" class="grid grid-cols-4 gap-5">
-        <!-- <div class="card bg-base-100 w-[320px] shadow-sm">
+      <div id="container" class="grid grid-cols-4 m-5 gap-5">
+        <div
+          class="flex justify-center items-center col-span-4 flex-col h-[60vh]"
+        >
+          <img src="./assets/Icon.png" alt="" />
+          <h2 class="text-3xl font-bold">
+            Oops!! Sorry, There is no content here
+          </h2>
+        </div>
+
+        <!-- <div class="card bg-base-100 shadow-sm">
           <figure>
-            <img src="./assets/Rectangle 1.png" alt="" />
+            <img class="object-cover" src="./assets/Rectangle 1.png" alt="" />
           </figure>
           <div class="card-body">
-            <div class="flex items-center gap-4 justify-between">
-              <img class="w-5" src="./assets/channel-logo.png" alt="" />
-              <h2 class="text-xl">
-                Building a Winning UX Strategy Using the Kano Model
-              </h2>
+            <div class="flex items-center gap-4">
+              <div class="avatar">
+                <div
+                  class="ring-primary ring-offset-base-100 w-6 rounded-full ring ring-offset-2"
+                >
+                  <img
+                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  />
+                </div>
+              </div>
+              <h2 class="text-xl font-semibold">Midnight Serenade</h2>
             </div>
             <div class="ml-7">
               <div class="flex items-center">
-                LWJ -Learn With Josim
+                <h2 class="text-[#17171770]">LWJ -Learn With Josim</h2>
                 <img class="w-4 mt-1 ml-1" src="assets/blue-badge.png" alt="" />
               </div>
-              <div class="">91k views</div>
+              <div class="text-[#17171770]">91k views</div>
             </div>
           </div>
         </div> -->
