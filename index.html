@@ -23,8 +23,28 @@
       <nav class="m-2 p-2 border-b-1">
         <ul class="w-11/12 mx-auto flex items-center justify-between">
           <li><img src="./assets/Logo.png" alt="" /></li>
-          <li><button class="btn text-xl">Sort By View</button></li>
-          <li class="bg-red-500 text-xl btn text-white">Blog</li>
+          <li class="text-xl">
+            <label class="input">
+              <svg
+                class="h-[1em] opacity-50"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  stroke-width="2.5"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.3-4.3"></path>
+                </g>
+              </svg>
+              <input id="search" type="search" required placeholder="Search" />
+            </label>
+          </li>
+          <li class="bg-red-500 text-xl btn text-white">Sort By View</li>
         </ul>
       </nav>
       <div>
@@ -45,6 +65,12 @@
         </ul>
       </div>
     </header>
+    <div class="flex justify-center items-center py-7">
+      <span
+        id="loader-btn"
+        class="loading loading-dots loading-xl hidden"
+      ></span>
+    </div>
     <main class="mt-8 w-11/12 mx-auto">
       <div id="container" class="grid grid-cols-4 m-5 gap-5">
         <div

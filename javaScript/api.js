@@ -1,5 +1,16 @@
 let catagory = document.getElementById("catagory");
 const containar = document.getElementById("container");
+// page loading
+const showLoader = () => {
+  const loaderBtn = (document.getElementById("loader-btn").style.display =
+    "block");
+  containar.style.display = "none";
+};
+const removeLoader = () => {
+  const loaderBtn = (document.getElementById("loader-btn").style.display =
+    "none");
+  containar.style.display = "grid";
+};
 
 // load catagory
 const loadCatagory = async () => {
@@ -12,6 +23,7 @@ const loadCatagory = async () => {
 
 // catagory video display
 const loadCatagoryVideos = async (id) => {
+  showLoader();
   let responce = await fetch(
     `https://openapi.programming-hero.com/api/phero-tube/category/${id}`
   );
@@ -20,17 +32,19 @@ const loadCatagoryVideos = async (id) => {
   removeActiveClass();
   const activebtn = document.getElementById(`btn-${id}`);
   activebtn.classList.add("active");
+  removeLoader();
 };
 // load videos
-const loadVideos = async () => {
+const loadVideos = async (searchInput = " ") => {
+  showLoader();
   removeActiveClass();
   const allbtn = document.getElementById("btn-all").classList.add("active");
-
   let responce = await fetch(
-    "https://openapi.programming-hero.com/api/phero-tube/videos"
+    `https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchInput}`
   );
   let videoData = await responce.json();
   ShowVideos(videoData.videos);
+  removeLoader();
 };
 // load videos details
 const videoDetails = async (videoId) => {
@@ -62,7 +76,9 @@ const ShowVideos = (allvideo) => {
   allvideo.forEach((video) => {
     let cards = ` <div class="video-card ">
           <figure>
-            <img class="w-full h-[150px] object-cover" src="${video.thumbnail}" alt="" />
+            <img class="w-full h-[150px] object-cover" src="${
+              video.thumbnail
+            }" alt="" />
           </figure>
           <div class="card-body">
             <div class="flex items-center gap-4">
@@ -79,14 +95,23 @@ const ShowVideos = (allvideo) => {
             </div>
             <div class="ml-7">
               <div class="flex items-center">
-                <h2 class="text-[#17171770]">${video.authors[0].profile_name}</h2>
-                <img class="w-4 mt-1 ml-1" src="assets/blue-badge.png" alt="" />
+                <h2 class="text-[#17171770]">${
+                  video.authors[0].profile_name
+                }</h2>
+                 
+               ${
+                 video.authors[0].verified
+                   ? `<img class="w-4 mt-1 ml-1" src="assets/blue-badge.png" />`
+                   : ""
+               }
               </div>
               <div class="text-[#17171770]">${video.others.views} views</div>
             </div>
             
           </div>
-         <button onclick="videoDetails('${video.video_id}')" class="btn btn-block">See Details</button>
+         <button onclick="videoDetails('${
+           video.video_id
+         }')" class="btn btn-block">See Details</button>
         </div>`;
     containar.innerHTML += cards;
   });
@@ -121,5 +146,10 @@ const showVideosDetails = (videodata) => {
 };
 
 // <p>${video.others.posted_date}</p>
+
+const search = document.getElementById("search");
+search.addEventListener("keyup", (e) => {
+  loadVideos(e.target.value);
+});
 
 loadCatagory();
