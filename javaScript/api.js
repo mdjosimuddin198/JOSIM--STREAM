@@ -9,24 +9,53 @@ const loadCatagory = async () => {
   let catagoryData = await responce.json();
   showCatagory(catagoryData.categories);
 };
-loadCatagory();
 
-const showCatagory = (categories) => {
-  categories.forEach((element) => {
-    let navbtn = `
-          <li onclick="loadCatagoryVideos(${element.category_id})" class="btn text-xl hover:bg-red-500 hover:text-white transition ">${element.category}</li> `;
-    catagory.innerHTML += navbtn;
-  });
+// catagory video display
+const loadCatagoryVideos = async (id) => {
+  let responce = await fetch(
+    `https://openapi.programming-hero.com/api/phero-tube/category/${id}`
+  );
+  let catagoryData = await responce.json();
+  ShowVideos(catagoryData.category);
+  removeActiveClass();
+  const activebtn = document.getElementById(`btn-${id}`);
+  activebtn.classList.add("active");
 };
-
 // load videos
 const loadVideos = async () => {
+  removeActiveClass();
+  const allbtn = document.getElementById("btn-all").classList.add("active");
+
   let responce = await fetch(
     "https://openapi.programming-hero.com/api/phero-tube/videos"
   );
   let videoData = await responce.json();
   ShowVideos(videoData.videos);
 };
+// load videos details
+const videoDetails = async (videoId) => {
+  let responce = await fetch(
+    `https://openapi.programming-hero.com/api/phero-tube/video/${videoId}`
+  );
+  let videodata = await responce.json();
+  showVideosDetails(videodata.video);
+};
+// show catagory
+const showCatagory = (categories) => {
+  categories.forEach((element) => {
+    let navbtn = `
+          <li id="btn-${element.category_id}" onclick="loadCatagoryVideos(${element.category_id})" class="btn text-xl hover:bg-red-500 hover:text-white transition ">${element.category}</li> `;
+    catagory.innerHTML += navbtn;
+  });
+};
+// remove active class and bg set
+const removeActiveClass = () => {
+  const activeclass = document.querySelectorAll(".active");
+  activeclass.forEach((classRm) => {
+    classRm.classList.remove("active");
+  });
+};
+
 // ShowVideos on the display
 const ShowVideos = (allvideo) => {
   containar.innerHTML = "";
@@ -46,7 +75,7 @@ const ShowVideos = (allvideo) => {
                   />
                 </div>
               </div>
-              <h2 class="text-xl font-semibold"> ${video.title}</h2>
+              <h2 class="text-[16px] font-semibold"> ${video.title}</h2>
             </div>
             <div class="ml-7">
               <div class="flex items-center">
@@ -54,9 +83,10 @@ const ShowVideos = (allvideo) => {
                 <img class="w-4 mt-1 ml-1" src="assets/blue-badge.png" alt="" />
               </div>
               <div class="text-[#17171770]">${video.others.views} views</div>
-              <p>${video.others.posted_date}</p>
             </div>
+            
           </div>
+         <button onclick="videoDetails('${video.video_id}')" class="btn btn-block">See Details</button>
         </div>`;
     containar.innerHTML += cards;
   });
@@ -70,24 +100,26 @@ const ShowVideos = (allvideo) => {
           </h2>
         </div>`;
   }
-  const click = document.querySelectorAll(".video-card");
-  addevent(click);
-};
-// addEventListener each card
-const addevent = (allcards) => {
-  allcards.forEach((card) => {
-    card.addEventListener("click", () => {
-      console.log("Hi");
-    });
-  });
 };
 
-// catagory video display
-
-const loadCatagoryVideos = async (id) => {
-  let responce = await fetch(
-    `https://openapi.programming-hero.com/api/phero-tube/category/${id}`
-  );
-  let catagoryData = await responce.json();
-  ShowVideos(catagoryData.category);
+// ShowVideosDetails on the display
+const showVideosDetails = (videodata) => {
+  const moreInfo = document.getElementById("moreInfo");
+  const details = document.getElementById("details");
+  moreInfo.showModal();
+  details.innerHTML = ` <div class="card bg-base-100 image-full w-96 shadow-sm">
+  <figure>
+    <img
+      src="${videodata.thumbnail}"
+      />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">${videodata.title}</h2>
+    <p>${videodata.description}</p>
+  </div>
+</div>`;
 };
+
+// <p>${video.others.posted_date}</p>
+
+loadCatagory();

@@ -11,6 +11,12 @@
       type="text/css"
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+      .active {
+        background: red;
+        color: white;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -27,6 +33,7 @@
           class="w-11/12 mx-auto flex items-center justify-center gap-5"
         >
           <li
+            id="btn-all"
             onclick="loadVideos();"
             class="text-xl btn hover:bg-red-500 hover:text-white"
           >
@@ -49,7 +56,7 @@
           </h2>
         </div>
 
-        <!-- <div class="card bg-base-100 shadow-sm">
+        <!--<div class="card bg-base-100 shadow-sm">
           <figure>
             <img class="object-cover" src="./assets/Rectangle 1.png" alt="" />
           </figure>
@@ -74,9 +81,22 @@
               <div class="text-[#17171770]">91k views</div>
             </div>
           </div>
-        </div> -->
+        </div>-->
       </div>
     </main>
+    <!-- You can open the modal using ID.showModal() method -->
+    <dialog id="moreInfo" class="modal">
+      <div class="modal-box">
+        <form method="dialog">
+          <button
+            class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+          >
+            ✕
+          </button>
+        </form>
+        <div id="details"></div>
+      </div>
+    </dialog>
     <!-- <script src="./javaScript/script.js"></script> -->
     <script src="./javaScript/api.js"></script>
   </body>
